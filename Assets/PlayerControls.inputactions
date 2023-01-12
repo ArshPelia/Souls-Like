@@ -17,7 +17,7 @@
                 {
                     "name": "Camera",
                     "type": "PassThrough",
-                    "id": "4f8e66b3-9669-4e88-885d-1055a8e0d8f7",
+                    "id": "9168ebbe-44cc-4fec-be80-60618daaded2",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -25,28 +25,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "3b4389a2-daca-4681-90e3-27ad15697855",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "StickDeadzone",
-                    "groups": "",
-                    "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2d54b4b0-d600-4d90-b492-c94fe9375cae",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "NormalizeVector2",
-                    "groups": "",
-                    "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "461e6c34-7ea2-4fd1-a221-e09f3465753b",
@@ -101,6 +79,28 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e0e74593-7b0f-4cb9-a62a-000c11efe61d",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone",
+                    "groups": "",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd561aa4-f9ee-4b71-be6d-0246966a5290",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

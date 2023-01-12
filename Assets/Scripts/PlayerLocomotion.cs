@@ -35,7 +35,7 @@ namespace Souls
             cameraObject = Camera.main.transform;
             myTransform = transform;
             animatorHandler.Initialize();
-
+            normalVector = Vector3.up;  // Initialize normalVector 
         }
 
         public void Update() 
@@ -47,12 +47,12 @@ namespace Souls
             moveDirection = cameraObject.forward * inputHandler.vertical;    
             moveDirection += cameraObject.right * inputHandler.horizontal;
             moveDirection.Normalize();
+            moveDirection.y = 0;
 
             float speed = movementSpeed;
-            moveDirection *= speed;
-
-            Vector3 projectVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-            rigidbody.velocity = projectVelocity;
+            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection * speed, normalVector);
+            // Vector3 projectVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
+            rigidbody.velocity = projectedVelocity;
 
             animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
 
@@ -63,7 +63,6 @@ namespace Souls
 
         #region Movement
         Vector3 normalVector;
-        Vector3 targetPosition;
         private void HandleRotation(float delta) {
             {
                 Vector3 targetDir = Vector3.zero;
@@ -86,7 +85,7 @@ namespace Souls
 
                 myTransform.rotation = targetRotation;
             }
-        #endregion
         }
+        #endregion
     }
 }
