@@ -12,6 +12,28 @@ namespace Souls
         public float mouseX;
         public float mouseY;
 
+        #region Key Input Bools & flags
+        public bool a_Input; // interact button
+        public bool t_Input; // random key for dancing
+        public bool y_input; // jump
+        public bool b_Input; // sprint/roll/backstep
+        public bool rb_Input; // light attack
+        public bool rt_Input; // heavy attack
+        public bool d_Pad_Up; // invetory quickslots
+        public bool d_Pad_Down;
+        public bool d_Pad_Left;
+        public bool d_Pad_Right;
+
+        public bool isInteracting;
+
+        public bool rollFlag;
+        public bool twerkFlag;
+        public bool jumpFlag;
+        public bool sprintFlag;
+        public bool comboFlag;
+        public float rollInputTimer;
+        #endregion
+
         PlayerControls inputActions;
         CameraHandler cameraHandler;
 
@@ -50,6 +72,11 @@ namespace Souls
         public void TickInput(float delta)
         {
             MoveInput(delta);
+            HandleRollingAndSprintInput(delta);
+            // HandleJumpAndDanceInput(delta);
+            // HandleAttackInput(delta);
+            // HandleQuickSlotInput();
+            // HandleInteractingButtonInput();
         }
         private void MoveInput(float delta)
         {
@@ -58,6 +85,28 @@ namespace Souls
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
             mouseX = cameraInput.x;
             mouseY = cameraInput.y;
+        }
+
+        private void HandleRollingAndSprintInput(float delta)
+        {
+            //detect when key is pressed & turn bool to true
+            b_Input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+
+            if(b_Input)
+            {
+                rollInputTimer += delta;
+                sprintFlag = true;
+            }
+            else
+            {
+                if(rollInputTimer > 0 && rollInputTimer < 0.5)
+                {
+                    sprintFlag = false;
+                    rollFlag = true;
+                }
+
+                rollInputTimer = 0;
+            }
         }
     }
 }

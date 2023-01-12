@@ -6,7 +6,7 @@ namespace Souls
 {
     public class AnimatorHandler : MonoBehaviour
     {
-        // PlayerManager playerManager;
+        PlayerManager playerManager;
         public Animator anim;
         InputHandler inputHandler;
         PlayerLocomotion playerLocomotion;
@@ -17,7 +17,7 @@ namespace Souls
 
         public void Initialize()
         {
-            // playerManager = GetComponentInParent<PlayerManager>();
+            playerManager = GetComponentInParent<PlayerManager>();
             // playerCollider = GetComponentInParent<Collider>();
             anim = GetComponent<Animator>();
             inputHandler = GetComponentInParent<InputHandler>();
@@ -133,20 +133,20 @@ namespace Souls
         //     playerCollider.enabled = false;
         // }
 
-        // public void OnAnimatorMove()
-        // {
-        //     //dont run codew below if its not interacting
-        //     if (playerManager.isInteracting == false)
-        //         return;
+        public void OnAnimatorMove()
+        {
+            //dont run codew below if its not interacting
+            if (playerManager.isInteracting == false)
+                return;
 
-        //     // readjust our player model to the centre of its game object after roll animation
-        //     float delta = Time.deltaTime;
-        //     playerLocomotion.rigidbody.drag = 0;
-        //     Vector3 deltaPosition = anim.deltaPosition;
-        //     deltaPosition.y = 0;
-        //     Vector3 velocity = deltaPosition / delta;
-        //     playerLocomotion.rigidbody.velocity = velocity;
-        // }
+            // readjust our player model to the centre of its game object after roll animation
+            float delta = Time.deltaTime;
+            playerLocomotion.rigidbody.drag = 0;
+            Vector3 deltaPosition = anim.deltaPosition;
+            deltaPosition.y = 0;
+            Vector3 velocity = deltaPosition / delta;
+            playerLocomotion.rigidbody.velocity = velocity;
+        }
 
     }
 }

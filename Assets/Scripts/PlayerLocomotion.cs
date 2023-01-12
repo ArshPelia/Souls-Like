@@ -43,14 +43,24 @@ namespace Souls
             float delta = Time.deltaTime;
 
             inputHandler.TickInput(delta);
+            HandleMovement(delta);
+            HandleRollingAndSprinting(delta);
+           
+        }
 
+        #region Movement
+        Vector3 normalVector;
+        Vector3 targetPosition;
+
+        private void HandleMovement(float delta){
             moveDirection = cameraObject.forward * inputHandler.vertical;    
             moveDirection += cameraObject.right * inputHandler.horizontal;
             moveDirection.Normalize();
             moveDirection.y = 0;
 
             float speed = movementSpeed;
-            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection * speed, normalVector);
+            moveDirection *= speed;
+            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             // Vector3 projectVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             rigidbody.velocity = projectedVelocity;
 
@@ -61,8 +71,6 @@ namespace Souls
             }
         }
 
-        #region Movement
-        Vector3 normalVector;
         private void HandleRotation(float delta) {
             {
                 Vector3 targetDir = Vector3.zero;
@@ -84,6 +92,41 @@ namespace Souls
                 Quaternion targetRotation = Quaternion.Slerp(myTransform.rotation, tr, rs * delta);
 
                 myTransform.rotation = targetRotation;
+            }
+        }
+
+         public void HandleRollingAndSprinting(float delta)
+        {
+            //do this so we cannot roll whenever, when other actions are happening
+            if (animatorHandler.anim.GetBool("isInteracting"))
+                return;
+
+            //if we Can roll, calulate roll direction
+            if (inputHandler.rollFlag)
+            {
+                moveDirection = cameraObject.forward * inputHandler.vertical;
+                moveDirection += cameraObject.right * inputHandler.horizontal;
+
+                //if you have any movement at all when roll button is pressed
+                if(inputHandler.moveAmount > 0)
+                {
+
+                    // play target animation Roll in dirtection of movemtm
+                    animatorHandler.PlayTargetAnimation("Rolling", true);
+                    moveDirection.y = 0; // not flying up or down
+
+                    // bounce player upwards a little 
+                    //rigidbody.AddForce((Vector3.up * walkingSpeed) + (moveDirection.normalized * 4f), ForceMode.Impulse);
+
+                    // rotate into direction we are rolling
+                    Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
+                    myTransform.rotation = rollRotation;
+                }
+                else // if no movement on button press
+                {
+                    //play back dodge animation
+                    animatorHandler.PlayTargetAnimation("Backstep", true);
+                }
             }
         }
         #endregion
