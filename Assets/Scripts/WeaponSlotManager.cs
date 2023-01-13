@@ -12,7 +12,7 @@ namespace Souls
         // DamageCollider leftHandDamageCollider; 
         // DamageCollider rightHandDamageCollider;
 
-        // public WeaponItem attackingWeapon;
+        public WeaponItem attackingWeapon;
 
         public Animator animator;
 

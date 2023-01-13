@@ -785,6 +785,7 @@ GameObject:
   - component: {fileID: 1844589714}
   - component: {fileID: 1844589718}
   - component: {fileID: 1844589719}
+  - component: {fileID: 1844589720}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -830,6 +831,7 @@ MonoBehaviour:
   groundDirectionRayDistance: 0.2
   inAirTimer: 0
   movementSpeed: 5
+  walkingSpeed: 1
   sprintSpeed: 7
   rotationSpeed: 10
   fallingSpeed: 150
@@ -930,6 +932,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightWeapon: {fileID: 11400000, guid: d2d72049bd853a84aa2e75329202e84c, type: 2}
   leftWeapon: {fileID: 11400000, guid: d2d72049bd853a84aa2e75329202e84c, type: 2}
+--- !u!114 &1844589720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844589712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37adfef923ca4b24f8a1bdd3b0002246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastAttack: 
 --- !u!1001 &1872622019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1027,4 +1042,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f63424aa6591d94c89fa3d26abb6730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackingWeapon: {fileID: 0}
   animator: {fileID: 0}

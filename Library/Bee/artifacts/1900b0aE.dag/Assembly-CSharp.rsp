@@ -424,6 +424,7 @@
 "Assets/Scripts/CameraHandler.cs"
 "Assets/Scripts/InputHandler.cs"
 "Assets/Scripts/Item.cs"
+"Assets/Scripts/PlayerAttacker.cs"
 "Assets/Scripts/PlayerInventory.cs"
 "Assets/Scripts/PlayerLocomotion.cs"
 "Assets/Scripts/PlayerManager.cs"

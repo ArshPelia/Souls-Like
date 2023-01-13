@@ -31,15 +31,18 @@ namespace Souls
         LayerMask ignoreForGroundCheck;
         public float inAirTimer;
 
-        [Header("Stats")]
+
+        [Header("Movement Stats")]
         [SerializeField]
-        float movementSpeed= 5.0f;
+        float movementSpeed = 5.0f;
+        [SerializeField]
+        float walkingSpeed = 1f;
         [SerializeField]
         float sprintSpeed = 7.0f;
         [SerializeField]
         float rotationSpeed = 10.0f;
         [SerializeField]
-        float fallingSpeed = 165f;
+        float fallingSpeed = 45f;
         [SerializeField] // this varible abd below doesn't really need to be shown in editor..
         float fallVelocity;
         [SerializeField]
@@ -90,7 +93,7 @@ namespace Souls
 
             float speed = movementSpeed;
 
-            if(inputHandler.sprintFlag)
+            if(inputHandler.sprintFlag && inputHandler.moveAmount > 0.5f)
             {
                 speed = sprintSpeed;
                 playerManager.isSprinting = true;
@@ -98,8 +101,16 @@ namespace Souls
             }
             else
             {
-                moveDirection *= speed;
-                playerManager.isSprinting = false;
+                if(inputHandler.moveAmount < 0.5)
+                {
+                    moveDirection *= walkingSpeed;
+                    playerManager.isSprinting = false;
+                }
+                else
+                {
+                    moveDirection *= speed;
+                    playerManager.isSprinting = false;
+                }
             }
 
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
@@ -220,7 +231,7 @@ namespace Souls
                     }
                     else // return to idle state
                     {
-                        animatorHandler.PlayTargetAnimation("Locomotion", false);
+                        animatorHandler.PlayTargetAnimation("Empty", false);
                         inAirTimer = 0;
                     }
 

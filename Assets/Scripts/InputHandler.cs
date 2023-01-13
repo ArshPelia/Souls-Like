@@ -33,11 +33,19 @@ namespace Souls
         #endregion
 
         PlayerControls inputActions;
+        PlayerAttacker playerAttacker;
+        PlayerInventory playerInventory;
+        PlayerManager playerManager;
 
         Vector2 movementInput;
         Vector2 cameraInput;
 
-
+        private void Awake()
+        {
+            playerAttacker = GetComponent<PlayerAttacker>();
+            playerInventory = GetComponent<PlayerInventory>();
+            playerManager = GetComponent<PlayerManager>();
+        }
 
         public void OnEnable()
         {
@@ -59,7 +67,7 @@ namespace Souls
             MoveInput(delta);
             HandleRollingAndSprintInput(delta);
             // HandleJumpAndDanceInput(delta);
-            // HandleAttackInput(delta);
+            HandleAttackInput(delta);
             // HandleQuickSlotInput();
             // HandleInteractingButtonInput();
         }
@@ -93,5 +101,36 @@ namespace Souls
                 rollInputTimer = 0;
             }
         }
+
+        private void HandleAttackInput(float delta)
+        {
+            inputActions.PlayerActions.RB.performed += i => rb_Input = true;
+            inputActions.PlayerActions.RT.performed += i => rt_Input = true;
+
+            //RB handles the right hand weapons light attack
+            if(rb_Input)
+            {
+                // handle combo inputs
+                // if(playerManager.canDoCombo)
+                // {
+                //     comboFlag = true;
+                //     playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                //     comboFlag = false;
+                // }
+                // else // not doing combo, regular attack
+                // {
+                    // if (playerManager.isInteracting) return; // don't play again if attack already happening
+                    // if (playerManager.canDoCombo) return; // don't play again if expecting a combo
+                    playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                // }
+            }
+
+            if(rt_Input)
+            {
+                playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+            }
+
+        }
+
     }
 }
