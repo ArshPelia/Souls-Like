@@ -7,6 +7,7 @@ namespace Souls
 
     public class PlayerLocomotion : MonoBehaviour
     {
+        PlayerManager playerManager;
         Transform cameraObject;
         InputHandler inputHandler;
         Vector3 moveDirection;
@@ -22,13 +23,25 @@ namespace Souls
 
         [Header("Stats")]
         [SerializeField]
-        float movementSpeed=5;
+        float movementSpeed= 5.0f;
         [SerializeField]
-        float rotationSpeed = 10;
+        float sprintSpeed = 7.0f;
+        [SerializeField]
+        float rotationSpeed = 10.0f;
+        [SerializeField]
+        float fallingSpeed = 45f;
+        [SerializeField] // this varible abd below doesn't really need to be shown in editor..
+        float fallVelocity;
+        [SerializeField]
+        float gravityIntesity = 9.8f;
+        [SerializeField]
+        float jumpHeight = 10f;
+
 
         // Start is called before the first frame update
         void Start()
         {
+            playerManager = GetComponent<PlayerManager>();
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
@@ -38,40 +51,54 @@ namespace Souls
             normalVector = Vector3.up;  // Initialize normalVector 
         }
 
-        public void Update() 
-        {
-            float delta = Time.deltaTime;
-
-            inputHandler.TickInput(delta);
-            HandleMovement(delta);
-            HandleRollingAndSprinting(delta);
-           
-        }
 
         #region Movement
         Vector3 normalVector;
         Vector3 targetPosition;
 
-        private void HandleMovement(float delta){
+        public void HandleMovement(float delta){
+
+
+            // cannot interrupt rolls with added movement
+            if (inputHandler.rollFlag)
+                return;
+
+            // cant move if falling
+            // if (playerManager.isInteracting)
+            //     return;
+
+
             moveDirection = cameraObject.forward * inputHandler.vertical;    
             moveDirection += cameraObject.right * inputHandler.horizontal;
             moveDirection.Normalize();
             moveDirection.y = 0;
 
             float speed = movementSpeed;
-            moveDirection *= speed;
+
+            if(inputHandler.sprintFlag)
+            {
+                speed = sprintSpeed;
+                playerManager.isSprinting = true;
+                moveDirection *= speed;
+            }
+            else
+            {
+                moveDirection *= speed;
+                playerManager.isSprinting = false;
+            }
+
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             // Vector3 projectVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             rigidbody.velocity = projectedVelocity;
 
-            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
+            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
 
             if(animatorHandler.canRotate){
                 HandleRotation(delta);
             }
         }
 
-        private void HandleRotation(float delta) {
+        public void HandleRotation(float delta) {
             {
                 Vector3 targetDir = Vector3.zero;
                 float moveOverride = inputHandler.moveAmount;

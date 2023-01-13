@@ -28,12 +28,12 @@ namespace Souls
 
         private void Awake()
         {
+            cameraHandler = CameraHandler.singleton;
         }
 
         void Start()
         {
-            //cameraHandler = CameraHandler.singleton;
-            cameraHandler = FindObjectOfType<CameraHandler>(); // note* using FindType assumes there is only ONE camera in scene.
+            // cameraHandler = FindObjectOfType<CameraHandler>(); // note* using FindType assumes there is only ONE camera in scene.
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
@@ -47,55 +47,58 @@ namespace Souls
             // link bools, get state of bool from animator state
             isInteracting = anim.GetBool("isInteracting");
             inputHandler.rollFlag = false;
+            inputHandler.sprintFlag = false;
+
+
+            inputHandler.TickInput(delta);
+            playerLocomotion.HandleMovement(delta);
+            playerLocomotion.HandleRollingAndSprinting(delta);
             // canDoCombo = anim.GetBool("canDoCombo");
-            
-            // inputHandler.TickInput(delta);
-            // playerLocomotion.HandleMovement(delta);
-            // playerLocomotion.HandleRollingAndSprinting(delta);
             // playerLocomotion.HandleJumpAndDance();
             // playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
 
             // CheckForInteractableObject(); // constantly check for interactable objeect
         }
 
-        // // Fixed update controls Camera Follow operations
-        // private void FixedUpdate()
-        // {
-        //     float delta = Time.fixedDeltaTime;
+        // Fixed update controls Camera Follow operations
+        private void FixedUpdate()
+        {
+            float delta = Time.fixedDeltaTime;
 
-        //     if (cameraHandler != null)
-        //     {
-        //         cameraHandler.FollowTarget(delta);
-        //         cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
-        //     }
-        // }
+            if (cameraHandler != null)
+            {
+                cameraHandler.FollowTarget(delta);
+                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+            }
+        }
 
-        // // late update speecifically for resetting flags
-        // private void LateUpdate()
-        // {
-        //     // reset flagfs for animations at end of each frame for ONE time register
-        //     inputHandler.rollFlag = false; 
-        //     inputHandler.twerkFlag = false;
-        //     inputHandler.sprintFlag = false;
-        //     inputHandler.jumpFlag = false;
+        // late update speecifically for resetting flags
+        private void LateUpdate()
+        {
+            // reset flagfs for animations at end of each frame for ONE time register
+            isSprinting = inputHandler.b_Input;
+            inputHandler.rollFlag = false; 
+            inputHandler.twerkFlag = false;
+            inputHandler.sprintFlag = false;
+            inputHandler.jumpFlag = false;
 
-        //     // reset input bools
-        //     inputHandler.rb_Input = false;
-        //     inputHandler.rt_Input = false;
-        //     inputHandler.d_Pad_Up = false;
-        //     inputHandler.d_Pad_Down = false;
-        //     inputHandler.d_Pad_Left = false;
-        //     inputHandler.d_Pad_Right = false;
-        //     inputHandler.a_Input = false;
-        //     //isSprinting = inputHandler.b_Input; // whenever you hold 'b' button, sprinting will be true, otherwise false
+            // reset input bools
+            inputHandler.rb_Input = false;
+            inputHandler.rt_Input = false;
+            inputHandler.d_Pad_Up = false;
+            inputHandler.d_Pad_Down = false;
+            inputHandler.d_Pad_Left = false;
+            inputHandler.d_Pad_Right = false;
+            inputHandler.a_Input = false;
+            // inputHandler.b_Input = false;
 
-        //     // increment inAirTimer if player is in the Air
-        //     if(isInAir)
-        //     {
-        //         playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
-        //     }
+            // increment inAirTimer if player is in the Air
+            // if(isInAir)
+            // {
+            //     playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+            // }
 
-        // }
+        }
 
         // //Function to constantly check for interactable items within the world
         // public void CheckForInteractableObject()

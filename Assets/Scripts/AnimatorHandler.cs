@@ -32,7 +32,7 @@ namespace Souls
             // anim.SetBool("isInAir", playerManager.isInAir);
         }
 
-        public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement) //bool isSprinting
+        public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting) //
         {
             #region Vertical
             float v = 0;
@@ -86,11 +86,11 @@ namespace Souls
             }
             #endregion
 
-            // if (isSprinting && verticalMovement > 0) // check for bool AND movement
-            // {
-            //     v = 2; // up value to 2, cueing the sprint animation
-            //     h = horizontalMovement;
-            // }
+            if (isSprinting && verticalMovement > 0) // check for bool AND movement
+            {
+                v = 2; // up value to 2, cueing the sprint animation
+                h = horizontalMovement;
+            }
 
             anim.SetFloat(vertical, v, 0.1f, Time.deltaTime);
             anim.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
