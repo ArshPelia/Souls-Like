@@ -9,8 +9,8 @@ namespace Souls
         WeaponHolderSlot leftHandSlot;
         WeaponHolderSlot rightHandSlot;
 
-        // DamageCollider leftHandDamageCollider; 
-        // DamageCollider rightHandDamageCollider;
+        DamageCollider leftHandDamageCollider; 
+        DamageCollider rightHandDamageCollider;
 
         public WeaponItem attackingWeapon;
 
@@ -49,7 +49,7 @@ namespace Souls
             if(isLeft)
             {
                 leftHandSlot.LoadWeaponModel(weaponItem); // load model
-                // LoadLeftWeaponDamageCollider(); // load collider
+                LoadLeftWeaponDamageCollider(); // load collider
                 // quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
                 // #region Handle Left Weapon Idle Animations
                 // //Handle left arm animations
@@ -67,7 +67,7 @@ namespace Souls
             else
             {
                 rightHandSlot.LoadWeaponModel(weaponItem);
-                // LoadRightWeaponDamageCollider();
+                LoadRightWeaponDamageCollider();
                 // quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
                 // # region Handle Right Weapon Idle Animations
                 // //Handle right arm animations
@@ -85,37 +85,37 @@ namespace Souls
             }
         }
 
-        // #region Handle Weapons damage collider
-        // // function load in the damage collider, finding component in left hand weapon model
-        // private void LoadLeftWeaponDamageCollider()
-        // {
-        //     leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
-        // }
+        #region Handle Weapons damage collider
+        // function load in the damage collider, finding component in left hand weapon model
+        private void LoadLeftWeaponDamageCollider()
+        {
+            leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+        }
 
-        // // function load in the damage collider, finding component in right hand weapon model
-        // private void LoadRightWeaponDamageCollider()
-        // {
-        //     rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
-        // }
+        // function load in the damage collider, finding component in right hand weapon model
+        private void LoadRightWeaponDamageCollider()
+        {
+            rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+        }
 
-        // // functions for Animation Events, methods to call
-        // public void OpenRightDamageCollider()
-        // {
-        //     rightHandDamageCollider.EnableDamageCollider();
-        // }
-        // public void OpenLeftDamageCollider()
-        // {
-        //     leftHandDamageCollider.EnableDamageCollider();
-        // }
-        // public void CloseRightDamageCollider()
-        // {
-        //     rightHandDamageCollider.DisableDamageCollider();
-        // }
-        // public void CloseLeftDamageCollider()
-        // {
-        //     leftHandDamageCollider.DisableDamageCollider();
-        // }
-        // #endregion
+        // functions for Animation Events, methods to call
+        public void OpenRightDamageCollider()
+        {
+            rightHandDamageCollider.EnableDamageCollider();
+        }
+        public void OpenLeftDamageCollider()
+        {
+            leftHandDamageCollider.EnableDamageCollider();
+        }
+        public void CloseRightDamageCollider()
+        {
+            rightHandDamageCollider.DisableDamageCollider();
+        }
+        public void CloseLeftDamageCollider()
+        {
+            leftHandDamageCollider.DisableDamageCollider();
+        }
+        #endregion
 
         // #region Handle Weapon Stamina Drain
         // public void DrainStaminaLightAttack()

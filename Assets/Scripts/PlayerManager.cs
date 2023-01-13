@@ -27,8 +27,9 @@ namespace Souls
         public bool canDoCombo;
 
         private void Awake()
-        {
-            cameraHandler = CameraHandler.singleton;
+        {   
+            // cameraHandler = CameraHandler.singleton;
+            cameraHandler = FindObjectOfType<CameraHandler>(); // note* using FindType assumes there is only ONE camera in scene.
         }
 
         void Start()
