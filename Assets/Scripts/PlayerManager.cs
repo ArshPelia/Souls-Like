@@ -55,7 +55,7 @@ namespace Souls
             playerLocomotion.HandleRollingAndSprinting(delta);
             // canDoCombo = anim.GetBool("canDoCombo");
             // playerLocomotion.HandleJumpAndDance();
-            // playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
 
             // CheckForInteractableObject(); // constantly check for interactable objeect
         }
@@ -93,10 +93,10 @@ namespace Souls
             // inputHandler.b_Input = false;
 
             // increment inAirTimer if player is in the Air
-            // if(isInAir)
-            // {
-            //     playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
-            // }
+            if(isInAir)
+            {
+                playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+            }
 
         }
 
