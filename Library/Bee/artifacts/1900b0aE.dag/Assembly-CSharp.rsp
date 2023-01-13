@@ -423,9 +423,14 @@
 "Assets/Scripts/AnimatorHandler.cs"
 "Assets/Scripts/CameraHandler.cs"
 "Assets/Scripts/InputHandler.cs"
+"Assets/Scripts/Item.cs"
+"Assets/Scripts/PlayerInventory.cs"
 "Assets/Scripts/PlayerLocomotion.cs"
 "Assets/Scripts/PlayerManager.cs"
 "Assets/Scripts/ResetAnimatorBool.cs"
+"Assets/Scripts/WeaponHolderSlot.cs"
+"Assets/Scripts/WeaponItem.cs"
+"Assets/Scripts/WeaponSlotManager.cs"
 -langversion:9.0
 
 /deterministic
