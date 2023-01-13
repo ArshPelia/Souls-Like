@@ -115,6 +115,7 @@
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
 -define:ENABLE_INPUT_SYSTEM
+-define:ENABLE_LEGACY_INPUT_MANAGER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"C:/Game Development/Unity Projects/Souls-Like/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/Newtonsoft.Json.dll"
@@ -422,13 +423,17 @@
 "Assets/PlayerControls.cs"
 "Assets/Scripts/AnimatorHandler.cs"
 "Assets/Scripts/CameraHandler.cs"
+"Assets/Scripts/DamagePlayer.cs"
+"Assets/Scripts/HealthBar.cs"
 "Assets/Scripts/InputHandler.cs"
 "Assets/Scripts/Item.cs"
 "Assets/Scripts/PlayerAttacker.cs"
 "Assets/Scripts/PlayerInventory.cs"
 "Assets/Scripts/PlayerLocomotion.cs"
 "Assets/Scripts/PlayerManager.cs"
+"Assets/Scripts/PlayerStats.cs"
 "Assets/Scripts/ResetAnimatorBool.cs"
+"Assets/Scripts/StaminaBar.cs"
 "Assets/Scripts/WeaponHolderSlot.cs"
 "Assets/Scripts/WeaponItem.cs"
 "Assets/Scripts/WeaponSlotManager.cs"
