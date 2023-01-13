@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc4f824bd653b1c4f99507a71070a539, type: 3}
+  m_Script: {fileID: 11500000, guid: fcd42e2f8e9b52142b17299dc0f66bbd, type: 3}
   m_Name: Short_Sword
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: a00e03d5213b8a944acf8397e6bf7fb5, type: 3}
-  itemName: Sword
-  modelPrefab: {fileID: 6907558942882003542, guid: 4556f50b8b65d7d4faca83019357ee8f, type: 3}
+  itemIcon: {fileID: 0}
+  itemName: Short_Sword
+  modelPrefab: {fileID: 8942742369124790506, guid: 54f634346848b3349a8fecedff61c32f, type: 3}
   isUnarmed: 0
-  Right_Arm_Idle_01: Right_Arm_Idle_01
-  Left_Arm_Idle_01: Left_Arm_Idle_01
-  OH_Light_Attack_1: OH_Light_Attack_01
-  OH_Light_Attack_2: OH_Light_Attack_02
-  OH_Heavy_Attack_1: OH_Heavy_Attack_01
-  baseStamina: 20
-  lightAttackMultiplier: 1
-  heavyAttackMultiplier: 1.5
+  Right_Arm_Idle_01: 
+  Left_Arm_Idle_01: 
+  OH_Light_Attack_1: 
+  OH_Light_Attack_2: 
+  OH_Heavy_Attack_1: 
+  baseStamina: 0
+  lightAttackMultiplier: 0
+  heavyAttackMultiplier: 0
