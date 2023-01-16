@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: Short_Sword
   modelPrefab: {fileID: 8942742369124790506, guid: 54f634346848b3349a8fecedff61c32f, type: 3}
   isUnarmed: 0
-  Right_Arm_Idle_01: 
-  Left_Arm_Idle_01: 
+  Right_Arm_Idle_01: Right_Arm_Idle_01
+  Left_Arm_Idle_01: Left_Arm_Idle_01
   OH_Light_Attack_1: OH_Light_Attack_01
   OH_Light_Attack_2: OH_Light_Attack_02
   OH_Heavy_Attack_1: OH_Heavy_Attack_01

@@ -51,37 +51,37 @@ namespace Souls
                 leftHandSlot.LoadWeaponModel(weaponItem); // load model
                 LoadLeftWeaponDamageCollider(); // load collider
                 // quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
-                // #region Handle Left Weapon Idle Animations
-                // //Handle left arm animations
-                // if (weaponItem != null && animator.GetFloat("Vertical") < 0.75f)
-                // {
-                //     // call/fade into left hand arm animation
-                //     animator.CrossFade(weaponItem.Left_Arm_Idle_01, 0.2f);
-                // }
-                // else
-                // {
-                //     animator.CrossFade("Left Arm Empty", 0.2f);
-                // }
-                // #endregion
+                #region Handle Left Weapon Idle Animations
+                //Handle left arm animations
+                if (weaponItem != null && animator.GetFloat("Vertical") < 0.75f)
+                {
+                    // call/fade into left hand arm animation
+                    animator.CrossFade(weaponItem.Left_Arm_Idle_01, 0.2f);
+                }
+                else
+                {
+                    animator.CrossFade("Left Arm Empty", 0.2f);
+                }
+                #endregion
             }
             else
             {
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
                 // quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
-                // # region Handle Right Weapon Idle Animations
-                // //Handle right arm animations
-                // if (weaponItem != null && animator.GetFloat("Vertical") < 0.75f)
-                // {
-                //     // call/fade into right hand arm animation
-                //     animator.CrossFade(weaponItem.Right_Arm_Idle_01, 0.2f);
-                // }
-                // else
-                // {
-                //     // do nothing, essentially, keepp being controlled by override state?
-                //     animator.CrossFade("Right Arm Empty", 0.2f);
-                // }
-                // #endregion
+                # region Handle Right Weapon Idle Animations
+                //Handle right arm animations
+                if (weaponItem != null && animator.GetFloat("Vertical") < 0.75f)
+                {
+                    // call/fade into right hand arm animation
+                    animator.CrossFade(weaponItem.Right_Arm_Idle_01, 0.2f);
+                }
+                else
+                {
+                    // do nothing, essentially, keepp being controlled by override state?
+                    animator.CrossFade("Right Arm Empty", 0.2f);
+                }
+                #endregion
             }
         }
 
