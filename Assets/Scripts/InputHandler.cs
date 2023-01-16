@@ -111,18 +111,18 @@ namespace Souls
             if(rb_Input)
             {
                 // handle combo inputs
-                // if(playerManager.canDoCombo)
-                // {
-                //     comboFlag = true;
-                //     playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
-                //     comboFlag = false;
-                // }
-                // else // not doing combo, regular attack
-                // {
-                    // if (playerManager.isInteracting) return; // don't play again if attack already happening
-                    // if (playerManager.canDoCombo) return; // don't play again if expecting a combo
+                if(playerManager.canDoCombo)
+                {
+                    comboFlag = true;
+                    playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                    comboFlag = false;
+                }
+                else // not doing combo, regular attack
+                {
+                    if (playerManager.isInteracting) return; // don't play again if attack already happening
+                    if (playerManager.canDoCombo) return; // don't play again if expecting a combo
                     playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
-                // }
+                }
             }
 
             if(rt_Input)

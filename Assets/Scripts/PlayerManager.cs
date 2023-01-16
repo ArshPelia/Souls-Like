@@ -54,7 +54,7 @@ namespace Souls
             inputHandler.TickInput(delta);
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
-            // canDoCombo = anim.GetBool("canDoCombo");
+            canDoCombo = anim.GetBool("canDoCombo");
             // playerLocomotion.HandleJumpAndDance();
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
 

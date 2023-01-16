@@ -1362,6 +1362,10 @@ PrefabInstance:
       value: Md_Char_Low_Poly_Man
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 0e05fc9d1218ab545b4e6d905c72b165, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 0e05fc9d1218ab545b4e6d905c72b165, type: 3}
+    - target: {fileID: 5866666021909216657, guid: 0e05fc9d1218ab545b4e6d905c72b165, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7da4db863f5bf17408340c993e3bec99, type: 2}
